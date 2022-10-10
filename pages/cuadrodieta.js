@@ -6,14 +6,29 @@ import {Autocomplete,Title, Table ,MultiSelect, TabProps, TextInput, Group, Butt
  
 
   
-const Cuadrodieta = () => {
-  const elements =  
-  [
-    { position: 'Proteinas', mass: 1, symbol: 'C', name: 'Carbon' },
-    { position: 'Lipidos', mass: 14.007, symbol: 'N', name: 'Nitrogen' },
-    { position: 'Carbohidratos', mass: 88.906, symbol: 'Y', name: 'Yttrium' },
-    { position: 'Total', mass: 137.33, symbol: 'Ba', name: 'Barium' },
+const Cuadrodieta = (props) => {
+
+  const dameElemento = (name, porcentaje, equivalente) => {
+    const kcalorias = parseFloat(props.kcal/100 * porcentaje).toFixed(2);
+    const gramos = parseFloat(kcalorias) / parseFloat(equivalente);
+    const grkg = gramos / props.peso;
+
+
+    return {
+      description: name,
+      porcentaje: porcentaje,
+      kcal: kcalorias,
+      gramos: gramos.toFixed(2),
+      grkcal: grkg.toFixed(2)
+    }
+  }
   
+  let elements =  
+  [
+    dameElemento('Proteinas', 20, 4),
+    dameElemento('Lipidos',30, 9),
+    dameElemento('Carbohidratos',50,4),
+    { description: 'Total', porcentaje: 100, kcal: props.kcal.toFixed(2), gramos: 'pendiente' , grkcal: 'pendiente'},
   ];
 
   const data = [
@@ -23,16 +38,17 @@ const Cuadrodieta = () => {
   ];
   <br></br>
   const rows = elements.map((element) => (
-    <tr key={element.name}>
-      <td>{element.position}</td>
-      <td>{element.name}</td>
-      <td>{element.symbol}</td>
-      <td>{element.mass}</td>
+    <tr key={element.description}>
+      <td>{element.description}</td>
+      <td>{element.porcentaje}%</td>
+      <td>{element.kcal} kcal</td>
+      <td>{element.gramos} gr</td>
+      <td>{element.grkcal} gr/k</td>
     </tr>
   ));
 
   return (
-    <div>cuadrodieta
+    <div>
 
 <AppShell
       navbarOffsetBreakpoint="sm"
@@ -53,8 +69,8 @@ const Cuadrodieta = () => {
       <Table withColumnBorders>
       <thead>
         <tr>
-          <th>Element position</th>
-          <th>Porcentaje /</th>
+          <th>Descripcion</th>
+          <th>Porcentaje </th>
           <th>Kcal </th>
           <th>Gramos</th>
           <th>g / kcal</th>

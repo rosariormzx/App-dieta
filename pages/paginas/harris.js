@@ -10,7 +10,7 @@ import { TextInput, Group, Button,  AppShell,
   Burger, Stack, UnstyledButton, Avatar,
   useMantineTheme, ScrollArea, ActionIcon, IconAdjustments} from '@mantine/core';
 
-const Harris = () => {
+const Harris = (props) => {
 
     const [genero, setGenero] = useState('')
     const [peso, setPeso] = useState(0.0)
@@ -55,6 +55,10 @@ const Harris = () => {
           const result = parseFloat(factor) + parseFloat(term);
           console.log(`result : ${result} de ${factor} + ${term}  test ${factor + term}`);
           setResultado(realizarFormato(result));
+
+
+          props.onKcal(result);
+          props.onPeso(peso);
     }
 
     function realizarFormato(num) {

@@ -25,6 +25,17 @@ const Calculo = () => {
   const [opened4, setOpened4] = useState(false);
   const [opened5, setOpened5] = useState(false);
 
+  const [kcalTotal, setKcalTotal] = useState(0);
+  const [peso, setPeso] = useState(0);
+
+  const guardarKcalTotal =  (kcal) => {
+    setKcalTotal(kcal);
+  }
+
+  const guardarPeso = (inputPeso) => {
+    setPeso(inputPeso);
+  }
+
     return (
         <div>
     <AppShell
@@ -37,7 +48,7 @@ const Calculo = () => {
           <Stack justify="flex-start" spacing="xl" >
       <Button color="violet" onClick={() => setOpened((o) => !o)} variant="subtle">Harris-Benedict</Button>
       <Collapse in={opened}>
-        <Harris></Harris>
+        <Harris onKcal = {guardarKcalTotal} onPeso={guardarPeso}> </Harris>
       </Collapse>
       <Button color="violet" onClick={() => setOpened2((o) => !o)} variant="subtle">OMS</Button>
       <Collapse in={opened2}>
@@ -56,8 +67,7 @@ const Calculo = () => {
         <Mifflin></Mifflin>
       </Collapse>
 
-
-          <Cuadrodieta/>
+      {kcalTotal == 0 ? <div></div> : <Cuadrodieta kcal = {kcalTotal} peso = {peso}/>}
 
     </Stack>
 
