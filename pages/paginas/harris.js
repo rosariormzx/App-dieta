@@ -16,11 +16,12 @@ const Harris = (props) => {
     const [peso, setPeso] = useState(0.0)
     const [altura, setAltura] = useState(0.0)
     const [edad, setEdad] = useState(0)
-    const [resultado, setResultado] = useState('')
+    const [resultado, setResultado] = useState(0.00)
     const [gastoEnergetico, setGastoEnergetico] = useState(0.00)
     const [actividad, setActividad] = useState(0.00)
     const [factorActividad, setFactorActividad] = useState(0.00)
     const [termogenesis, setTermogenesis] = useState(0.0)
+    
     
     const data = [
       {value: 1.2, label: 'sedentario'},
@@ -29,6 +30,8 @@ const Harris = (props) => {
       {value: 1.7, label: 'activo'},
       {value: 1.9, label: 'vigoroso'}
     ]
+
+    
     function CalcularHarris(){
       // Gasto energetico Basal (GEB), solo la formula, para caso masculino
         let calculo;
@@ -121,6 +124,7 @@ const Harris = (props) => {
       onChange={(event) => setActividad(event.currentTarget.value)}
       withAsterisk
     />
+
 
         </Group>
 

@@ -12,6 +12,7 @@ import {
   useMantineTheme, ScrollArea, ActionIcon, IconAdjustments
 } from '@mantine/core';
 import Menu from '../components/Menu';
+import Layout from '../components/Layout';
 
 
 
@@ -37,7 +38,7 @@ const Bmi = () => {
 
   
   return (
-    <div>
+     < Layout isPrivate = {true} >
       <AppShell
         navbarOffsetBreakpoint="sm"
         asideOffsetBreakpoint="sm"
@@ -78,7 +79,7 @@ const Bmi = () => {
           {bmi}
 
       </AppShell>
-    </div>
+    </Layout>
   )
 }
 

@@ -6,6 +6,7 @@ import {
 } from '@mantine/core';
 import { Image } from '@mantine/core';
 import Menu from '../components/Menu';
+import Layout from '../components/Layout';
 
 // Conexion al firebase, al archivo .json
 export const getStaticProps = async (context) => {
@@ -39,7 +40,7 @@ const buscador = () => {
   }
 
   return (
-    <div>buscador
+    <Layout isPrivate = {true}>buscador
 
       <AppShell
         navbarOffsetBreakpoint="sm"
@@ -84,7 +85,7 @@ const buscador = () => {
 
 
       </AppShell>
-    </div>
+    </Layout>
   )
 }
 
